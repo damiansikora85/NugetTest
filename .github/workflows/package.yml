@@ -1,0 +1,29 @@
+name: Nuget package and deploy
+
+# Run this workflow every time a new commit pushed to your repository
+on: push
+
+jobs:
+  # Set the job key. The key is displayed as the job name
+  # when a job name is not provided
+  package:
+    # Name the Job
+    name: Nuget package and deploy
+    # Set the type of machine to run on
+    runs-on: windows-latest
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.0.0
+        
+      - uses: nuget/setup-nuget@v1
+        with:
+          nuget-api-key: ${{ secrets.NuGetAPIKey }}
+          nuget-version: '5.x'
+        
+      - name: Build Solution
+        run: msbuild ./NugetTest/NugetTest.sln /restore /p:Configuration=Release
