@@ -32,7 +32,7 @@ jobs:
         run: nuget pack ./NugetTest.nuspec
         
       - name: Publish Nuget
-        run: nuget push NugetTest.1.0.0.nupkg -ApiKey ${{ env.nugetapikey }}
+        run: nuget push NugetTest.1.0.0.nupkg -ApiKey ${{ secrets.NUGETAPIKEY }}
 
 
 
