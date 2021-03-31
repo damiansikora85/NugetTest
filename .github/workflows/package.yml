@@ -22,7 +22,7 @@ jobs:
         
       - uses: nuget/setup-nuget@v1
         with:
-          nuget-api-key: ${{ secrets.NuGetAPIKey }}
+          nuget-api-key: ${{ secrets.NUGETAPIKEY }}
           nuget-version: '5.x'
         
       - name: Build Solution
@@ -31,8 +31,11 @@ jobs:
       - name: Create Nuget package
         run: nuget pack ./NugetTest.nuspec
         
+      - name: Secrets
+        run: echo ${{ secrets.NUGETAPIKEY }}
+        
       - name: Publish Nuget
-        run: nuget push NugetTest.1.0.0.nupkg
+        run: nuget push NugetTest.1.0.0.nupkg -src https://api.nuget.org/v3/index.json
 
 
 
