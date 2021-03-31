@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>NugetTest</id>
+		<version>1.0.0</version>
+		<authors>DS</authors>
+		<owners>DS</owners>
+		<releaseNotes/>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Just a test nuget</description>
+		<copyright>Copyright 2021</copyright>
+		<dependencies>
+        <group targetFramework="MonoAndroid1.0"/>
+		</dependencies>
+	</metadata>
+	<files>  
+		<file src="NugetTest.Droid\bin\Release\NugetTest.dll" target="lib\MonoAndroid10" />
+	</files>  
+</package>
