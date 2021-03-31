@@ -27,3 +27,6 @@ jobs:
         
       - name: Build Solution
         run: msbuild ./NugetTest/NugetTest.sln /restore /p:Configuration=Release
+        
+      - name: Create Nuget package
+        run: nuget pack ./NugetTest.nuspec
