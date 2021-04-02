@@ -22,8 +22,23 @@ jobs:
         
       - uses: nuget/setup-nuget@v1
         with:
-          nuget-api-key: ${{ secrets.NuGetAPIKey }}
+          nuget-api-key: ${{ secrets.NUGETAPIKEY }}
           nuget-version: '5.x'
         
       - name: Build Solution
         run: msbuild ./NugetTest/NugetTest.sln /restore /p:Configuration=Release
+        
+      - name: Create Nuget package
+        run: nuget pack ./NugetTest.nuspec
+        
+      - name: Secrets
+        run: echo ${{ secrets.NUGETAPIKEY }}
+        
+      - name: Publish Nuget
+        run: nuget push NugetTest.1.0.0.nupkg -src https://api.nuget.org/v3/index.json -apiKey ${{ secrets.NUGETAPIKEY }}
+
+
+
+
+
+
