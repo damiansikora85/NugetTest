@@ -25,17 +25,17 @@ jobs:
           nuget-api-key: ${{ secrets.NUGETAPIKEY }}
           nuget-version: '5.x'
         
-      - name: Build Solution
-        run: msbuild ./NugetTest/NugetTest.sln /restore /p:Configuration=Release
+      #- name: Build Solution
+       # run: msbuild ./NugetTest/NugetTest.sln /restore /p:Configuration=Release
         
-      - name: Create Nuget package
-        run: nuget pack ./NugetTest.nuspec
+      #- name: Create Nuget package
+       # run: nuget pack ./NugetTest.nuspec
         
       - name: Secrets
         run: echo ${{ secrets.NUGETAPIKEY }}
         
-      - name: Publish Nuget
-        run: nuget push NugetTest.1.0.0.nupkg -src https://api.nuget.org/v3/index.json
+      #- name: Publish Nuget
+       # run: nuget push NugetTest.1.0.0.nupkg -src https://api.nuget.org/v3/index.json
 
 
 
