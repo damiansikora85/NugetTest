@@ -29,8 +29,8 @@ jobs:
           nuget-api-key: ${{ secrets.NUGETAPIKEY }}
           nuget-version: '5.x'
         
-     # - name: Build Solution
-      #  run: msbuild ./NugetTest/NugetTest.sln /restore /p:Configuration=Release
+      - name: Build Solution
+        run: msbuild ./NugetTest/NugetTest.sln /restore /p:Configuration=Release
         
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
@@ -44,14 +44,11 @@ jobs:
         run: |
           echo "SemVer: $GITVERSION_SEMVER"
         
-      #- name: Create Nuget package
-       # run: nuget pack ./NugetTest.nuspec
+      - name: Create Nuget package
+        run: nuget pack ./NugetTest.nuspec -Version $GITVERSION_SEMVER
         
-      #- name: Secrets
-       # run: echo ${{ secrets.NUGETAPIKEY }}
-        
-      #- name: Publish Nuget
-       # run: nuget push Xamarin.Empty.1.0.1.nupkg -src https://api.nuget.org/v3/index.json -apiKey ${{ secrets.NUGETAPIKEY }}
+      - name: Publish Nuget
+        run: nuget push Xamarin.Empty.$GITVERSION_SEMVER.nupkg -src https://api.nuget.org/v3/index.json -apiKey ${{ secrets.NUGETAPIKEY }}
 
 
 
