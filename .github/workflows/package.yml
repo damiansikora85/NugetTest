@@ -11,6 +11,8 @@ jobs:
     name: Nuget package and deploy
     # Set the type of machine to run on
     runs-on: windows-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
