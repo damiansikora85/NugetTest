@@ -35,7 +35,7 @@ jobs:
         run: echo ${{ secrets.NUGETAPIKEY }}
         
       - name: Publish Nuget
-        run: nuget push NugetTest.1.0.0.nupkg -src https://api.nuget.org/v3/index.json - apiKey ${{ secrets.NUGETAPIKEY }}
+        run: nuget push NugetTest.1.0.0.nupkg -src https://api.nuget.org/v3/index.json -apiKey ${{ secrets.NUGETAPIKEY }}
 
 
 
