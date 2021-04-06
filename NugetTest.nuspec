@@ -14,6 +14,6 @@
 		</dependencies>
 	</metadata>
 	<files>  
-		<file src="NugetTest.Droid\bin\Release\NugetTest.dll" target="lib\MonoAndroid10" />
+		<file src="NugetTest.Droid\bin\Release\NugetTest.Droid.dll" target="lib\MonoAndroid10" />
 	</files>  
 </package>
