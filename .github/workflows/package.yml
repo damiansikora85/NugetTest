@@ -44,7 +44,6 @@ jobs:
       - name: Get Version
         id: getversion
         run: echo "::set-output name=version::${{ steps.gitversion.outputs.major }}.${{ steps.gitversion.outputs.minor }}.${{ steps.gitversion.outputs.commitsSinceVersionSource }}"
-          #echo "${{ steps.gitversion.outputs.major }}.${{ steps.gitversion.outputs.minor }}.${{ steps.gitversion.outputs.commitsSinceVersionSource }}"
         
       - name: Create Nuget package
         run: nuget pack ./NugetTest.nuspec -Version ${{ steps.getversion.outputs.version }}
