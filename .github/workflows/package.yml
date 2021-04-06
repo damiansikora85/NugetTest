@@ -42,7 +42,7 @@ jobs:
         
       - name: Display SemVer
         run: |
-          echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+          echo "SemVer: $GITVERSION_SEMVER"
         
       - name: Create Nuget package
         run: nuget pack ./NugetTest.nuspec -Version $GITVERSION_SEMVER
