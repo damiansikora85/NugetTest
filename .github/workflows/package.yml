@@ -43,13 +43,13 @@ jobs:
         
       - name: Display SemVer
         run: |
-          echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+          echo "Version: ${{ steps.gitversion.outputs.major }}.${{ steps.gitversion.outputs.minor }}.${{ steps.gitversion.outputs.commitsSinceVersionSource }}
         
       - name: Create Nuget package
-        run: nuget pack ./NugetTest.nuspec -Version ${{ steps.gitversion.outputs.semVer }}
+        run: nuget pack ./NugetTest.nuspec -Version ${{ steps.gitversion.outputs.major }}.${{ steps.gitversion.outputs.minor }}.${{ steps.gitversion.outputs.commitsSinceVersionSource }}
         
       - name: Publish Nuget
-        run: nuget push Xamarin.Empty.${{ steps.gitversion.outputs.semVer }}.nupkg -src https://api.nuget.org/v3/index.json -apiKey ${{ secrets.NUGETAPIKEY }}
+        run: nuget push Xamarin.Empty.${{ steps.gitversion.outputs.major }}.${{ steps.gitversion.outputs.minor }}.${{ steps.gitversion.outputs.commitsSinceVersionSource }}.nupkg -src https://api.nuget.org/v3/index.json -apiKey ${{ secrets.NUGETAPIKEY }}
 
 
 
