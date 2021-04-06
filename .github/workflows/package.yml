@@ -16,7 +16,7 @@ jobs:
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -42,7 +42,7 @@ jobs:
         
       - name: Display SemVer
         run: |
-          echo "SemVer: $GITVERSION_SEMVER"
+          echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
         
       - name: Create Nuget package
         run: nuget pack ./NugetTest.nuspec -Version $GITVERSION_SEMVER
