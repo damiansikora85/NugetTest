@@ -41,15 +41,16 @@ jobs:
         id:   gitversion
         uses: gittools/actions/gitversion/execute@v0.9.7
         
-      - name: Display SemVer
-        run: |
-          echo "Version: ${{ steps.gitversion.outputs.major }}.${{ steps.gitversion.outputs.minor }}.${{ steps.gitversion.outputs.commitsSinceVersionSource }}
+      - name: Get Version
+        id: getversion
+        run: echo "::set-output name=version::${{ steps.gitversion.outputs.major }}.${{ steps.gitversion.outputs.minor }}.${{ steps.gitversion.outputs.commitsSinceVersionSource }}"
+          #echo "${{ steps.gitversion.outputs.major }}.${{ steps.gitversion.outputs.minor }}.${{ steps.gitversion.outputs.commitsSinceVersionSource }}"
         
       - name: Create Nuget package
-        run: nuget pack ./NugetTest.nuspec -Version ${{ steps.gitversion.outputs.major }}.${{ steps.gitversion.outputs.minor }}.${{ steps.gitversion.outputs.commitsSinceVersionSource }}
+        run: nuget pack ./NugetTest.nuspec -Version ${{ steps.getversion.outputs.version }}
         
       - name: Publish Nuget
-        run: nuget push Xamarin.Empty.${{ steps.gitversion.outputs.major }}.${{ steps.gitversion.outputs.minor }}.${{ steps.gitversion.outputs.commitsSinceVersionSource }}.nupkg -src https://api.nuget.org/v3/index.json -apiKey ${{ secrets.NUGETAPIKEY }}
+        run: nuget push Xamarin.Empty.${{ steps.getversion.outputs.version }}.nupkg -src https://api.nuget.org/v3/index.json -apiKey ${{ secrets.NUGETAPIKEY }}
 
 
 
