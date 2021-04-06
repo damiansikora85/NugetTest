@@ -46,10 +46,10 @@ jobs:
           echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
         
       - name: Create Nuget package
-        run: nuget pack ./NugetTest.nuspec -Version $GITVERSION_SEMVER
+        run: nuget pack ./NugetTest.nuspec -Version ${{ steps.gitversion.outputs.semVer }}
         
       - name: Publish Nuget
-        run: nuget push Xamarin.Empty.$GITVERSION_SEMVER.nupkg -src https://api.nuget.org/v3/index.json -apiKey ${{ secrets.NUGETAPIKEY }}
+        run: nuget push Xamarin.Empty.${{ steps.gitversion.outputs.semVer }}.nupkg -src https://api.nuget.org/v3/index.json -apiKey ${{ secrets.NUGETAPIKEY }}
 
 
 
